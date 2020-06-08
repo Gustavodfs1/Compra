@@ -1,0 +1,28 @@
+# This workflow will build a Java project with Maven
+# For more information see: https://help.github.com/actions/language-and-framework-guides/building-and-testing-java-with-maven
+
+name: Action build native
+
+on: [push]
+
+jobs:
+  native_build:
+    runs-on: ubuntu-latest
+    name: Build native Quarkus app
+    steps:
+      - name: Checkout the code
+        uses: actions/checkout@master
+      - name: Setup GraalVM environment
+        uses: DeLaGuardo/setup-graalvm@2.0
+        with:
+          graalvm-version: "20.1.0.java11"
+      - name: Build native executable
+        run: mvn package -Pnative -Dquarkus.native.container-build=true
+      - name: Listar itens
+        run: |
+          ls
+      - name: Upload native executable
+        uses: actions/upload-artifact@v1
+        with:
+          name: native-executable
+          path: target/ 
