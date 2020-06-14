@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: market-code-compra
+  labels:
+    app: market-code-compra
+spec:
+  replicas: 1
+  minReadySeconds: 30
+  selector:
+    matchLabels:
+      app: market-code-compra
+  template:
+    metadata:
+      labels:
+        app: market-code-compra
+    spec:
+      containers:
+        - name: market-code-compra
+          image: gustavodfs/market-code-compra
+          env:
+            - name: JDBC_URL
+              value: jdbc:mysql://172.16.48.5:3306/MarketCodeCompra
+            - name: PAGAMENTO_API_URL
+              value: http://market-code-pagamento
+
+                  
+                
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: market-code-compra
+  name: market-code-compra
+spec:
+  selector:
+    app: market-code-compra
+  ports:
+    - port: 8081
+      targetPort: 8081
+  type: NodePort
