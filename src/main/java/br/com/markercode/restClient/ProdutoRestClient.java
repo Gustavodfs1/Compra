@@ -21,12 +21,12 @@ import br.com.markercode.model.Produto;
 public interface ProdutoRestClient {
 
     @POST
-    @Path("/atualizar-estoque")
+    @Path("/atualizar-estoque.php")
     @Produces(MediaType.APPLICATION_JSON)
     void atualizarEstoque(List<Produto> produtos);
 
     @POST
-    @Path("/somar-estoque")
+    @Path("/somar-estoque.php")
     @Produces(MediaType.APPLICATION_JSON)
 	void somarEstoque(List<Produto> produtos);
     
