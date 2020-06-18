@@ -20,7 +20,7 @@ spec:
           image: gustavodfs/market-code-compra
           env:
             - name: JDBC_URL
-              value: jdbc:mysql://34.69.105.8:3306/MarketCodeCompra
+              value: jdbc:mysql://172.16.48.5:3306/MarketCodeCompra
             - name: PAGAMENTO_API_URL
               value: http://market-code-pagamento
             - name: PRODUTO_API_URL
